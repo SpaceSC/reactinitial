@@ -4,7 +4,7 @@ function LoadingMask() {
 
   return (
     <div>
-      Loading
+      Loading...
     </div>
   )
 }
