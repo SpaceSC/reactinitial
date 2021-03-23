@@ -1,0 +1,1 @@
+//!result ? <LoadingMask/> : <p>{result}</p>
