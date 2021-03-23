@@ -7,7 +7,6 @@ const App = () => {
 
   const [ isLoaded, setIsLoaded ] = useState(false);
   const [ hotels, setHotels ] = useState([]);
-  // const [ error, setError ] = useState(false);
 
   useEffect(() => {
     fetch("api/hotels")
@@ -18,7 +17,7 @@ const App = () => {
         setHotels(result);
       },
       (error) => {
-        //setError(true);
+        console.log(error);
         setIsLoaded(true);
       }
     )
