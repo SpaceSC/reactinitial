@@ -5,7 +5,6 @@ function Hotel({hotel}) {
   const [ show, setShow ] = useState(false);
   const [subscribe, setSubscribe] = useState(false);
   
-
   return (
     <div>
       <p>{hotel.name}</p>
@@ -15,7 +14,7 @@ function Hotel({hotel}) {
       {subscribe && 
       <div>
         <h2>Request more info about {hotel.name}</h2>
-        <Subscription />
+        <Subscription key={hotel.name} hotel={hotel} setSubscribe={setSubscribe}/>
       </div>
       }
       
