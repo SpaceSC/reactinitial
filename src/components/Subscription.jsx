@@ -6,6 +6,7 @@ function Subscription({hotel}) {
   const [ userEmail, setUserEmail ] = useState("");
   const [ showSubscribe, setShowSubscribe ] = useState(true);
   const [ result, setResult ] = useState(false);
+  const [ showResult, setShowResult ] = useState(true);
 
   function validate(e) {
     setUserEmail(e.target.value);
@@ -35,29 +36,37 @@ function Subscription({hotel}) {
       })
       .then(response => response.json())
       .then((data) =>{
-        if(data) {
-        setResult("Subscribed");
-        } else {
+        if(data.success) {
+          setResult("Subscribed");
+          // console.log(data); // { success: true }
+          } else {
           setResult("Already subscribed");
-        }
+          }
       })
-      .finally(()=> setTimeout(() => {setShowSubscribe(false)}, 5000));
+      .finally(()=> setTimeout(() => {
+        setShowSubscribe(false);
+        setShowResult(false);
+      }, 5000));
     }
 
   return (
     <>
-    {showSubscribe ?
+    {showResult ?
+    showSubscribe ?
       <div>
         <form onSubmit={submitted}>
         <input type="email" id="email" name="email" onInput={validate}/>
         {valid ? <button>Subscribe</button> : <button disabled>Subscribe</button>}
         </form>
       </div>
-      : !result ? <LoadingMask/> : <p>{result}</p>
+    : !result ? <LoadingMask/> : <p>{result}</p>
+    : ""
     }
     </>
-    
   )
 }
 
 export default Subscription;
+
+//!result ? <LoadingMask/> : <p>{result}</p>
+//: ""
